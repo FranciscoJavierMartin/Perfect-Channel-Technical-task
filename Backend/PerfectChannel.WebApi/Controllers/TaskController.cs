@@ -15,7 +15,29 @@ namespace PerfectChannel.WebApi.Controllers
   public class TaskController : ControllerBase
   {
 
-    private static List<Todo> _todos = new List<Todo>();
+    private static List<Todo> _todos = new List<Todo>(){
+      new Todo
+        {
+          Id = Guid.NewGuid(),
+          Description = "Completed 1",
+          IsCompleted = true
+        },
+        new Todo{
+          Id = Guid.NewGuid(),
+          Description = "Completed 2",
+          IsCompleted = true
+        },
+        new Todo{
+          Id = Guid.NewGuid(),
+          Description = "Pending 1",
+          IsCompleted = false
+        },
+        new Todo{
+          Id = Guid.NewGuid(),
+          Description = "Pending 1",
+          IsCompleted = false
+        }
+    };
 
     public TaskController() { }
 

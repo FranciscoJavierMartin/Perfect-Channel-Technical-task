@@ -3,7 +3,7 @@ import './App.css';
 
 const App: React.FC = () => {
   useEffect(() => {
-    fetch('http://localhost:5000/api/Task')
+    fetch(`${process.env.REACT_APP_API_URL}Task`)
       .then((res) => res.json())
       .then(console.log);
   });
