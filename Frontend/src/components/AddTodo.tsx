@@ -15,6 +15,7 @@ const AddTodo: React.FC = () => {
           type='text'
           value={todo}
           onChange={(e) => setTodo(e.target.value)}
+          required
         />
         <button type='submit'>Add</button>
       </form>
