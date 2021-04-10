@@ -5,6 +5,7 @@ using Backend.PerfectChannel.WebApi.Entities;
 using System.Collections.Generic;
 using System;
 using Backend.PerfectChannel.WebApi.DTO;
+using System.Linq;
 
 namespace PerfectChannel.WebApi.Controllers
 {
@@ -42,6 +43,25 @@ namespace PerfectChannel.WebApi.Controllers
         }
       );
       return Ok();
+    }
+
+    [HttpPatch("{id}")]
+    public ActionResult ToggleTodo(Guid id)
+    {
+      ActionResult res;
+      Todo todoToUpdate = _todos.FirstOrDefault(x => x.Id == id);
+
+      if (todoToUpdate == null)
+      {
+        res = NotFound();
+      }
+      else
+      {
+        todoToUpdate.IsCompleted = !todoToUpdate.IsCompleted;
+        res = Ok();
+      }
+
+      return res;
     }
   }
 }
