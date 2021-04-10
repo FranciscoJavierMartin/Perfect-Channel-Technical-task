@@ -23,3 +23,7 @@ export function createTodo(description: string) {
     body: JSON.stringify({ description }),
   });
 }
+
+export function toggleTodo(id: string) {
+  console.log(id);
+}
