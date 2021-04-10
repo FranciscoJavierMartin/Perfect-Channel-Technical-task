@@ -13,3 +13,13 @@ export function getCompletedTodos(): Promise<Todo[]> {
 export function getPendingTodos(): Promise<Todo[]> {
   return getTodos(false);
 }
+
+export function createTodo(description: string) {
+  return fetch(`${process.env.REACT_APP_API_URL}Task`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ description }),
+  });
+}

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { createTodo } from '../network/todos';
 
 const AddTodo: React.FC = () => {
-  const [todo, setTodo] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(todo);
+    createTodo(description);
   };
 
   return (
@@ -13,8 +14,8 @@ const AddTodo: React.FC = () => {
       <form onSubmit={submitHandler}>
         <input
           type='text'
-          value={todo}
-          onChange={(e) => setTodo(e.target.value)}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           required
         />
         <button type='submit'>Add</button>
