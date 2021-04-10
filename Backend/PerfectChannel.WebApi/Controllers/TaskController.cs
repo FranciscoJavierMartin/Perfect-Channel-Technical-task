@@ -24,6 +24,12 @@ namespace PerfectChannel.WebApi.Controllers
       return _todos;
     }
 
+    [HttpGet("filtered")]
+    public ActionResult<List<Todo>> GetFilteredTodos([FromQuery] bool isCompleted)
+    {
+      return _todos.FindAll(x => x.IsCompleted == isCompleted);
+    }
+
     [HttpPost]
     public ActionResult CreateNewTodo([FromBody] TodoAddDTO todoToAdd)
     {
