@@ -5,11 +5,12 @@ import { toggleTodo } from '../network/todos';
 interface TodoListProps {
   todos: Todo[];
   title: string;
+  forceRefresh: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos, title }) => {
+const TodoList: React.FC<TodoListProps> = ({ todos, title, forceRefresh }) => {
   function toggleHandler(id: string) {
-    toggleTodo(id);
+    toggleTodo(id).then(() => forceRefresh((prevState: boolean) => !prevState));
   }
 
   return (

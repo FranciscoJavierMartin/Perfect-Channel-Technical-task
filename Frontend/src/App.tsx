@@ -8,6 +8,7 @@ import AddTodo from './components/AddTodo';
 const App: React.FC = () => {
   const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
   const [pendingTodos, setPendingTodos] = useState<Todo[]>([]);
+  const [forcedRefresh, setForcedRefresh] = useState<boolean>(false);
 
   useEffect(() => {
     getCompletedTodos().then((res) => {
@@ -16,13 +17,21 @@ const App: React.FC = () => {
     getPendingTodos().then((res) => {
       setPendingTodos(res);
     });
-  }, [setCompletedTodos, setPendingTodos]);
+  }, [setCompletedTodos, setPendingTodos, forcedRefresh]);
 
   return (
     <div>
       <AddTodo />
-      <TodoList todos={completedTodos} title='Completed Todos' />
-      <TodoList todos={pendingTodos} title='Pending Todos' />
+      <TodoList
+        todos={completedTodos}
+        title='Completed Todos'
+        forceRefresh={setForcedRefresh}
+      />
+      <TodoList
+        todos={pendingTodos}
+        title='Pending Todos'
+        forceRefresh={setForcedRefresh}
+      />
     </div>
   );
 };
