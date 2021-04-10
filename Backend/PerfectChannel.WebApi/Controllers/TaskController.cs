@@ -19,7 +19,8 @@ namespace PerfectChannel.WebApi.Controllers
       _todos = new List<Todo>();
     }
 
-    public async Task<ActionResult<List<Todo>>> GetTodos()
+    [HttpGet]
+    public ActionResult<List<Todo>> GetAllTodos()
     {
       return _todos;
     }
