@@ -25,5 +25,7 @@ export function createTodo(description: string) {
 }
 
 export function toggleTodo(id: string) {
-  console.log(id);
+  return fetch(`${process.env.REACT_APP_API_URL}Task/${id}`, {
+    method: 'PATCH',
+  });
 }
