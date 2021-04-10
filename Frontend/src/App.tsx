@@ -3,6 +3,7 @@ import { Todo } from './models/todo';
 import { getCompletedTodos, getPendingTodos } from './network/todos';
 import './App.css';
 import TodoList from './components/TodoList';
+import AddTodo from './components/AddTodo';
 
 const App: React.FC = () => {
   const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
@@ -19,6 +20,7 @@ const App: React.FC = () => {
 
   return (
     <div>
+      <AddTodo />
       <TodoList todos={completedTodos} title='Completed Todos' />
       <TodoList todos={pendingTodos} title='Pending Todos' />
     </div>
