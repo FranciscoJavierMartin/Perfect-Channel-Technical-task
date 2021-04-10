@@ -19,7 +19,6 @@ namespace PerfectChannel.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            
             ConfigureCors(services);
         }
 

@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Backend.PerfectChannel.WebApi.Entities;
+using System.Collections.Generic;
 
 namespace PerfectChannel.WebApi.Controllers
 {
@@ -10,9 +12,16 @@ namespace PerfectChannel.WebApi.Controllers
   public class TaskController : ControllerBase
   {
 
-    public async Task<ActionResult<string[]>> GetTodos()
+    private List<Todo> _todos;
+
+    public TaskController()
     {
-      return new string[1] { "Hello" };
+      _todos = new List<Todo>();
+    }
+
+    public async Task<ActionResult<List<Todo>>> GetTodos()
+    {
+      return _todos;
     }
   }
 }
