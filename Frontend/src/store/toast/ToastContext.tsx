@@ -3,9 +3,10 @@ import React from 'react';
 export interface Toast {
   message: string;
   id: number;
+  isError: boolean;
 }
 
-const ToastContext = React.createContext((message: string) => {});
+const ToastContext = React.createContext((message: string, isError?: boolean) => {});
 
 export function useToastContext() {
   return React.useContext(ToastContext);
@@ -25,10 +26,13 @@ const ToastProvider: React.FC = ({ children }) => {
   }, [toasts]);
 
   const addToast = React.useCallback(
-    function (message: string) {
+    function (message: string, isError?: boolean) {
       // Use Math.random to generate a pseudorandom id
       // and avoid to import a library for that task
-      setToasts((toasts) => [...toasts, { message, id: Math.random() }]);
+      setToasts((toasts) => [
+        ...toasts,
+        { message, id: Math.random(), isError: !!isError },
+      ]);
     },
     [setToasts]
   );
@@ -38,7 +42,10 @@ const ToastProvider: React.FC = ({ children }) => {
       {children}
       <div className='toasts-wrapper'>
         {toasts.map((toast: Toast) => (
-          <div className='toast' key={toast.id}>
+          <div
+            className={['toast', toast.isError ? 'error' : ''].join(' ')}
+            key={toast.id}
+          >
             {toast.message}
           </div>
         ))}

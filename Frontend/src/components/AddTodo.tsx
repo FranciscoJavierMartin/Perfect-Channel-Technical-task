@@ -14,9 +14,11 @@ const AddTodo: React.FC<AddTodoProps> = () => {
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     createTodo(description).then(() => {
-      loadTodos(todoDispatch).then(() =>
-        addToast(`Your task "${description}" has been added successfuly`)
-      );
+      loadTodos(todoDispatch)
+        .then(() =>
+          addToast(`Your task "${description}" has been added successfuly`)
+        )
+        .catch(() => addToast('Ups, something went wrong. Try again.', true));
     });
   };
 

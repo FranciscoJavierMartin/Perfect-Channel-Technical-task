@@ -10,3 +10,10 @@
   background: green;
   margin-bottom: 0.5rem;
 }
+
+.toast.error {
+  padding: 0.5rem 1rem;
+  color: white;
+  background: red;
+  margin-bottom: 0.5rem;
+}
