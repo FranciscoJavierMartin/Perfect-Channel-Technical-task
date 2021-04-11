@@ -44,7 +44,15 @@ const TodoList: React.FC<TodoListProps> = ({ todos, title, message }) => {
     <div className='col-md-6 col-12'>
       <h2>{title}</h2>
       {isLoading ? (
-        <h3>Loading...</h3>
+        <div className='d-flex justify-content-center'>
+          <div
+            className='spinner-border text-dark'
+            role='status'
+            style={{ width: '3rem', height: '3rem' }}
+          >
+            <span className='sr-only'>Loading...</span>
+          </div>
+        </div>
       ) : todos.length === 0 ? (
         <span>{message}</span>
       ) : (
