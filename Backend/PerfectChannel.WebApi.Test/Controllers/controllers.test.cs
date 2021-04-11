@@ -115,5 +115,32 @@ namespace PerfectChannel.WebApi.Test.Controllers
       Assert.IsEmpty(todosCompleted);
       Assert.AreEqual(todosPending.Count, 2);
     }
+
+    [Test]
+    public async Task GetEmptyCompletedTodo()
+    {
+      await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "Test" });
+      await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "Test 1" });
+
+      ActionResult<List<Todo>> response = await _todoService.GetFilteredTodos(true);
+      Assert.IsInstanceOf<OkResult>(response);
+      Assert.IsEmpty(response.Value);
+    }
+
+    [Test]
+    public async Task GetAllCompletedTodo()
+    {
+      await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "Test 1" });
+      await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "Test 2" });
+      await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "Test 3" });
+
+      List<Todo> todos = (await _todoService.GetAllTodos()).Value;
+
+      await _todoService.ToggleTodo(todos[0].Id);
+      await _todoService.ToggleTodo(todos[1].Id);
+      ActionResult<List<Todo>> response = await _todoService.GetFilteredTodos(true);
+      Assert.IsInstanceOf<OkResult>(response);
+      Assert.AreEqual(response.Value.Count, 2);
+    }
   }
 }
