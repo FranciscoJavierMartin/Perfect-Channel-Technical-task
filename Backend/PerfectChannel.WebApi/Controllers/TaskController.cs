@@ -37,15 +37,24 @@ namespace PerfectChannel.WebApi.Controllers
     [HttpPost]
     public async Task<ActionResult> CreateNewTodo([FromBody] TodoAddDTO todoToAdd)
     {
-      _todos.Add(
-        new Todo
-        {
-          Id = Guid.NewGuid(),
-          Description = todoToAdd.Description,
-          IsCompleted = false
-        }
-      );
-      return Ok();
+      ActionResult res;
+      if (!String.IsNullOrWhiteSpace(todoToAdd.Description))
+      {
+        _todos.Add(
+          new Todo
+          {
+            Id = Guid.NewGuid(),
+            Description = todoToAdd.Description,
+            IsCompleted = false
+          }
+        );
+        res = Ok();
+      }
+      else
+      {
+        res = BadRequest();
+      }
+      return res;
     }
 
     [HttpPatch("{id}")]
