@@ -29,5 +29,27 @@ namespace PerfectChannel.WebApi.Test.Controllers
       List<Todo> todos = (await _todoService.GetAllTodos()).Value;
       Assert.IsEmpty(todos);
     }
+
+    [Test]
+    public async Task AddContent()
+    {
+      ActionResult response = await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "Test" });
+      Assert.IsInstanceOf<OkResult>(response);
+      List<Todo> todos = (await _todoService.GetAllTodos()).Value;
+      Assert.IsNotEmpty(todos);
+      Todo insertedTodo = todos[0];
+      Assert.IsNotNull(insertedTodo);
+      Assert.AreEqual(insertedTodo.Description, "Test");
+      Assert.IsFalse(insertedTodo.IsCompleted);
+    }
+
+    [Test]
+    public async Task NoAddContentWithEmptyDescription()
+    {
+      ActionResult response = await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "" });
+      Assert.IsInstanceOf<BadRequestResult>(response);
+      List<Todo> todos = (await _todoService.GetAllTodos()).Value;
+      Assert.IsEmpty(todos);
+    }
   }
 }
