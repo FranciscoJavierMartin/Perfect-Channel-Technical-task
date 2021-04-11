@@ -7,9 +7,10 @@ import { useTodoContext } from '../store/todo/TodoContext';
 interface TodoListProps {
   todos: Todo[];
   title: string;
+  message: string;
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos, title }) => {
+const TodoList: React.FC<TodoListProps> = ({ todos, title, message }) => {
   const { dispatch: todoDispatch } = useTodoContext();
 
   function toggleHandler(id: string) {
@@ -19,18 +20,22 @@ const TodoList: React.FC<TodoListProps> = ({ todos, title }) => {
   return (
     <div>
       <h2>{title}</h2>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            <input
-              type='checkbox'
-              checked={todo.isCompleted}
-              onChange={() => toggleHandler(todo.id)}
-            />
-            <span>{todo.description}</span>
-          </li>
-        ))}
-      </ul>
+      {todos.length === 0 ? (
+        <span>{message}</span>
+      ) : (
+        <ul>
+          {todos.map((todo) => (
+            <li key={todo.id}>
+              <input
+                type='checkbox'
+                checked={todo.isCompleted}
+                onChange={() => toggleHandler(todo.id)}
+              />
+              <span>{todo.description}</span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

@@ -18,8 +18,8 @@ const App: React.FC = () => {
   return (
     <div>
       <AddTodo />
-      <TodoList todos={completedTodos} title='Completed Todos' />
-      <TodoList todos={pendingTodos} title='Pending Todos' />
+      <TodoList todos={completedTodos} title='Completed Todos' message='Time to work. Try to complete some task.'/>
+      <TodoList todos={pendingTodos} title='Pending Todos' message='You have completed all your goals. Congrats!'/>
     </div>
   );
 };
