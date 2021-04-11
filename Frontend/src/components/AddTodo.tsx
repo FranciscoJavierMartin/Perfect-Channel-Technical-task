@@ -28,7 +28,10 @@ const AddTodo: React.FC<AddTodoProps> = () => {
           'Ups, something went wrong when your task was added. Please try again.',
           true
         )
-      );
+      )
+      .finally(() => {
+        setDescription('');
+      });
   };
 
   return (
