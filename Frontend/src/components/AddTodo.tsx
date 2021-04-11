@@ -42,7 +42,7 @@ const AddTodo: React.FC<AddTodoProps> = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
-          placeholder='What you want to achive?'
+          placeholder='What you want to achieve?'
           className='form-control'
         />
         <div className='input-group-append'>
