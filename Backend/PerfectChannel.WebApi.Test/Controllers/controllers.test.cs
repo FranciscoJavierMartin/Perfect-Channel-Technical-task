@@ -8,6 +8,7 @@ using Backend.PerfectChannel.WebApi.DTO;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Linq;
+using System;
 
 namespace PerfectChannel.WebApi.Test.Controllers
 {
@@ -98,6 +99,21 @@ namespace PerfectChannel.WebApi.Test.Controllers
 
       Todo notUpdatedTodoFromPending = todosCompleted.FirstOrDefault(x => x.Id == notUpdatedTodo.Id); ;
       Assert.IsNotNull(notUpdatedTodoFromPending);
+    }
+
+    [Test]
+    public async Task NotFoundTodoToggle()
+    {
+      await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "Test" });
+      await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "Test 1" });
+
+      ActionResult response = await _todoService.ToggleTodo(Guid.NewGuid());
+      Assert.IsInstanceOf<OkResult>(response);
+      List<Todo> todosPending = (await _todoService.GetFilteredTodos(false)).Value;
+      List<Todo> todosCompleted = (await _todoService.GetFilteredTodos(true)).Value;
+
+      Assert.IsEmpty(todosCompleted);
+      Assert.AreEqual(todosPending.Count, 2);
     }
   }
 }
