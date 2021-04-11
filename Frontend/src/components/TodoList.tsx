@@ -1,16 +1,19 @@
 import React from 'react';
 import { Todo } from '../models/todo';
 import { toggleTodo } from '../network/todos';
+import loadTodos from '../store/todoAction';
+import { useTodoContext } from '../store/TodoContext';
 
 interface TodoListProps {
   todos: Todo[];
   title: string;
-  forceRefresh: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos, title, forceRefresh }) => {
+const TodoList: React.FC<TodoListProps> = ({ todos, title }) => {
+  const { dispatch: todoDispatch } = useTodoContext();
+
   function toggleHandler(id: string) {
-    toggleTodo(id).then(() => forceRefresh((prevState: boolean) => !prevState));
+    toggleTodo(id).then(() => loadTodos(todoDispatch));
   }
 
   return (

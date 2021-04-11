@@ -3,11 +3,9 @@ import { createTodo } from '../network/todos';
 import loadTodos from '../store/todoAction';
 import { useTodoContext } from '../store/TodoContext';
 
-interface AddTodoProps {
-  forceRefresh: React.Dispatch<React.SetStateAction<boolean>>;
-}
+interface AddTodoProps {}
 
-const AddTodo: React.FC<AddTodoProps> = ({ forceRefresh }) => {
+const AddTodo: React.FC<AddTodoProps> = () => {
   const [description, setDescription] = useState<string>('');
   const { dispatch: todoDispatch } = useTodoContext();
 
