@@ -13,7 +13,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     loadTodos(todoDispatch);
-  }, []);
+  }, [todoDispatch]);
 
   return (
     <div className='container'>
