@@ -1,27 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Todo } from './models/todo';
-import { getCompletedTodos, getPendingTodos } from './network/todos';
-import './App.css';
 import TodoList from './components/TodoList';
 import AddTodo from './components/AddTodo';
+import { useTodoContext } from './store/TodoContext';
+import loadTodos from './store/todoAction';
+import './App.css';
 
 const App: React.FC = () => {
-  const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
-  const [pendingTodos, setPendingTodos] = useState<Todo[]>([]);
   const [forcedRefresh, setForcedRefresh] = useState<boolean>(false);
 
+  const {
+    state: { completedTodos, pendingTodos },
+    dispatch: todoDispatch,
+  } = useTodoContext();
+
   useEffect(() => {
-    getCompletedTodos().then((res) => {
-      setCompletedTodos(res);
-    });
-    getPendingTodos().then((res) => {
-      setPendingTodos(res);
-    });
-  }, [setCompletedTodos, setPendingTodos, forcedRefresh]);
+    loadTodos(todoDispatch);
+  }, [forcedRefresh]);
 
   return (
     <div>
-      <AddTodo forceRefresh={setForcedRefresh}/>
+      <AddTodo forceRefresh={setForcedRefresh} />
       <TodoList
         todos={completedTodos}
         title='Completed Todos'
