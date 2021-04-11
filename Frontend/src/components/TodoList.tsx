@@ -9,9 +9,17 @@ interface TodoListProps {
   todos: Todo[];
   title: string;
   message: string;
+  image: string;
+  imageAlt: string;
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos, title, message }) => {
+const TodoList: React.FC<TodoListProps> = ({
+  todos,
+  title,
+  message,
+  image,
+  imageAlt,
+}) => {
   const {
     state: { isLoading },
     dispatch: todoDispatch,
@@ -54,7 +62,14 @@ const TodoList: React.FC<TodoListProps> = ({ todos, title, message }) => {
           </div>
         </div>
       ) : todos.length === 0 ? (
-        <span>{message}</span>
+        <div>
+          <img
+            src={`assets/images/${image}.png`}
+            alt={imageAlt}
+            className='rounded img-fluid mb-2'
+          />
+          <span>{message}</span>
+        </div>
       ) : (
         <div className='checkboxes'>
           <ul className='list-unstyled'>

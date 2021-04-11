@@ -24,11 +24,15 @@ const App: React.FC = () => {
           todos={pendingTodos}
           title='Pending TO-DO'
           message='You have completed all your goals. Congrats!'
+          image='success'
+          imageAlt='Success'
         />
         <TodoList
           todos={completedTodos}
           title='Completed TO-DO'
           message='Time to work. Try to complete some task.'
+          image='hard-work'
+          imageAlt='Hard work'
         />
       </div>
     </div>
