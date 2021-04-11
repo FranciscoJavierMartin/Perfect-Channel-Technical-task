@@ -41,22 +41,41 @@ const TodoList: React.FC<TodoListProps> = ({ todos, title, message }) => {
   }
 
   return (
-    <div className='col-lg-6'>
+    <div className='col-md-6 col-12'>
       <h2>{title}</h2>
       {isLoading ? (
         <h3>Loading...</h3>
       ) : todos.length === 0 ? (
         <span>{message}</span>
       ) : (
-        <ul>
+        <ul className='list-unstyled'>
           {todos.map((todo) => (
-            <li key={todo.id}>
-              <input
-                type='checkbox'
-                checked={todo.isCompleted}
-                onChange={() => toggleHandler(todo)}
-              />
-              <span>{todo.description}</span>
+            <li key={todo.id} className='input-group'>
+              <div className='input-group-prepend'>
+                <div
+                  className='input-group-text border-0 d-flex align-items-start'
+                  style={{ backgroundColor: 'lightcyan' }}
+                >
+                  <input
+                    type='checkbox'
+                    checked={todo.isCompleted}
+                    onChange={() => toggleHandler(todo)}
+                  />
+                  <input
+                    value={todo.description}
+                    readOnly
+                    style={{ backgroundColor: 'lightcyan' }}
+                    className={[
+                      'text-wrap',
+                      'border-0',
+                      'form-control',
+                      'font-weight-light',
+                      'font-italic',
+                      todo.isCompleted ? 'text-line-through' : '',
+                    ].join(' ')}
+                  />
+                </div>
+              </div>
             </li>
           ))}
         </ul>
