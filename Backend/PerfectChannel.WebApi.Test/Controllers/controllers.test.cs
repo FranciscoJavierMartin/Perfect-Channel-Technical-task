@@ -97,7 +97,7 @@ namespace PerfectChannel.WebApi.Test.Controllers
       Assert.AreEqual(todoUpdated.Description, "Test");
       Assert.IsFalse(todoUpdated.IsCompleted);
 
-      Todo notUpdatedTodoFromPending = todosCompleted.FirstOrDefault(x => x.Id == notUpdatedTodo.Id); ;
+      Todo notUpdatedTodoFromPending = todosPending.FirstOrDefault(x => x.Id == notUpdatedTodo.Id); ;
       Assert.IsNotNull(notUpdatedTodoFromPending);
     }
 
@@ -108,7 +108,7 @@ namespace PerfectChannel.WebApi.Test.Controllers
       await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "Test 1" });
 
       ActionResult response = await _todoService.ToggleTodo(Guid.NewGuid());
-      Assert.IsInstanceOf<OkResult>(response);
+      Assert.IsInstanceOf<NotFoundResult>(response);
       List<Todo> todosPending = (await _todoService.GetFilteredTodos(false)).Value;
       List<Todo> todosCompleted = (await _todoService.GetFilteredTodos(true)).Value;
 
@@ -123,7 +123,6 @@ namespace PerfectChannel.WebApi.Test.Controllers
       await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "Test 1" });
 
       ActionResult<List<Todo>> response = await _todoService.GetFilteredTodos(true);
-      Assert.IsInstanceOf<OkResult>(response);
       Assert.IsEmpty(response.Value);
     }
 
@@ -139,7 +138,6 @@ namespace PerfectChannel.WebApi.Test.Controllers
       await _todoService.ToggleTodo(todos[0].Id);
       await _todoService.ToggleTodo(todos[1].Id);
       ActionResult<List<Todo>> response = await _todoService.GetFilteredTodos(true);
-      Assert.IsInstanceOf<OkResult>(response);
       Assert.AreEqual(response.Value.Count, 2);
     }
 
@@ -155,7 +153,6 @@ namespace PerfectChannel.WebApi.Test.Controllers
       await _todoService.ToggleTodo(todos[0].Id);
 
       ActionResult<List<Todo>> response = await _todoService.GetFilteredTodos(false);
-      Assert.IsInstanceOf<OkResult>(response);
       Assert.AreEqual(response.Value.Count, 2);
     }
   }

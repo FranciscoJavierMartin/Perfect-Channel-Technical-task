@@ -15,9 +15,12 @@ namespace PerfectChannel.WebApi.Controllers
   public class TaskController : ControllerBase
   {
 
-    private static List<Todo> _todos = new List<Todo>();
+    private List<Todo> _todos;
 
-    public TaskController() { }
+    public TaskController()
+    {
+      _todos = new List<Todo>();
+    }
 
     [HttpGet]
     public async Task<ActionResult<List<Todo>>> GetAllTodos()
