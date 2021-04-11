@@ -1,6 +1,7 @@
 import React from 'react';
 import { Todo } from '../models/todo';
 import { toggleTodo } from '../network/todos';
+import { useToastContext } from '../store/toast/ToastContext';
 import loadTodos from '../store/todo/todoAction';
 import { useTodoContext } from '../store/todo/TodoContext';
 
@@ -12,9 +13,14 @@ interface TodoListProps {
 
 const TodoList: React.FC<TodoListProps> = ({ todos, title, message }) => {
   const { dispatch: todoDispatch } = useTodoContext();
+  const addToast = useToastContext();
 
-  function toggleHandler(id: string) {
-    toggleTodo(id).then(() => loadTodos(todoDispatch));
+  function toggleHandler(todo: Todo) {
+    toggleTodo(todo.id)
+      .then(() => {loadTodos(todoDispatch))
+      .then(() => {
+        addToast(``);
+      });
   }
 
   return (
@@ -29,7 +35,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, title, message }) => {
               <input
                 type='checkbox'
                 checked={todo.isCompleted}
-                onChange={() => toggleHandler(todo.id)}
+                onChange={() => toggleHandler(todo)}
               />
               <span>{todo.description}</span>
             </li>
