@@ -48,37 +48,32 @@ const TodoList: React.FC<TodoListProps> = ({ todos, title, message }) => {
       ) : todos.length === 0 ? (
         <span>{message}</span>
       ) : (
-        <ul className='list-unstyled'>
-          {todos.map((todo) => (
-            <li key={todo.id} className='input-group'>
-              <div className='input-group-prepend'>
-                <div
-                  className='input-group-text border-0 d-flex align-items-start'
-                  style={{ backgroundColor: 'lightcyan' }}
-                >
+        <div className='checkboxes'>
+          <ul className='list-unstyled'>
+            {todos.map((todo) => (
+              <li key={todo.id}>
+                <label htmlFor={todo.id}>
                   <input
+                    id={todo.id}
                     type='checkbox'
                     checked={todo.isCompleted}
                     onChange={() => toggleHandler(todo)}
+                    className='mr-2'
                   />
-                  <input
-                    value={todo.description}
-                    readOnly
-                    style={{ backgroundColor: 'lightcyan' }}
-                    className={[
-                      'text-wrap',
-                      'border-0',
-                      'form-control',
-                      'font-weight-light',
-                      'font-italic',
-                      todo.isCompleted ? 'text-line-through' : '',
-                    ].join(' ')}
-                  />
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
+                  <span
+                    className={
+                      todo.isCompleted
+                        ? 'font-weight-light font-italic text-line-through'
+                        : ''
+                    }
+                  >
+                    {todo.description}
+                  </span>
+                </label>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
