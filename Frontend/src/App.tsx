@@ -21,14 +21,14 @@ const App: React.FC = () => {
       <AddTodo />
       <div className='row'>
         <TodoList
-          todos={completedTodos}
-          title='Completed TO-DO'
-          message='Time to work. Try to complete some task.'
-        />
-        <TodoList
           todos={pendingTodos}
           title='Pending TO-DO'
           message='You have completed all your goals. Congrats!'
+        />
+        <TodoList
+          todos={completedTodos}
+          title='Completed TO-DO'
+          message='Time to work. Try to complete some task.'
         />
       </div>
     </div>
