@@ -1,0 +1,12 @@
+.toasts-wrapper {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+.toast {
+  padding: 0.5rem 1rem;
+  color: white;
+  background: green;
+  margin-bottom: 0.5rem;
+}

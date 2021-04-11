@@ -1,4 +1,4 @@
-import { getCompletedTodos, getPendingTodos } from '../network/todos';
+import { getCompletedTodos, getPendingTodos } from '../../network/todos';
 import { DispatchTodo, TodoActionName } from './todoTypes';
 
 export default async function loadTodos(dispatch: DispatchTodo) {

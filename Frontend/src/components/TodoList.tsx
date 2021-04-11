@@ -1,8 +1,8 @@
 import React from 'react';
 import { Todo } from '../models/todo';
 import { toggleTodo } from '../network/todos';
-import loadTodos from '../store/todoAction';
-import { useTodoContext } from '../store/TodoContext';
+import loadTodos from '../store/todo/todoAction';
+import { useTodoContext } from '../store/todo/TodoContext';
 
 interface TodoListProps {
   todos: Todo[];

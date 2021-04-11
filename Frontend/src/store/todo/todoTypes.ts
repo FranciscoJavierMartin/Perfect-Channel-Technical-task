@@ -1,4 +1,4 @@
-import { Todo } from '../models/todo';
+import { Todo } from '../../models/todo';
 
 export enum TodoActionName {
   LOAD_TODOS = 'LOAD_TODOS',

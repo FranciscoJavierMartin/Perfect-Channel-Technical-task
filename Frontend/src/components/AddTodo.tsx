@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createTodo } from '../network/todos';
-import loadTodos from '../store/todoAction';
-import { useTodoContext } from '../store/TodoContext';
+import loadTodos from '../store/todo/todoAction';
+import { useTodoContext } from '../store/todo/TodoContext';
 
 interface AddTodoProps {}
 

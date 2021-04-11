@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import TodoProvider from './store/TodoContext';
+import TodoProvider from './store/todo/TodoContext';
+import ToastProvider from './store/toast/ToastContext';
 
 ReactDOM.render(
-  <TodoProvider>
-    <App />
-  </TodoProvider>,
+  <ToastProvider>
+    <TodoProvider>
+      <App />
+    </TodoProvider>
+  </ToastProvider>,
   document.getElementById('root')
 );
 
