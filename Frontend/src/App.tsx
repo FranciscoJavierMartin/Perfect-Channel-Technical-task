@@ -4,18 +4,15 @@ import AddTodo from './components/AddTodo';
 import { useTodoContext } from './store/todo/TodoContext';
 import loadTodos from './store/todo/todoAction';
 import './App.css';
-import { useToastContext } from './store/toast/ToastContext';
 
 const App: React.FC = () => {
   const {
     state: { completedTodos, pendingTodos },
     dispatch: todoDispatch,
   } = useTodoContext();
-  const addToast = useToastContext();
 
   useEffect(() => {
     loadTodos(todoDispatch);
-    addToast('Hello');
   }, []);
 
   return (
