@@ -24,6 +24,7 @@ const AddTodo: React.FC<AddTodoProps> = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
+          placeholder='What you want to achive?'
         />
         <button type='submit'>Add</button>
       </form>
