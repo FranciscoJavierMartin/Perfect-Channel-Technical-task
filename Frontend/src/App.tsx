@@ -16,10 +16,20 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className='container'>
       <AddTodo />
-      <TodoList todos={completedTodos} title='Completed Todos' message='Time to work. Try to complete some task.'/>
-      <TodoList todos={pendingTodos} title='Pending Todos' message='You have completed all your goals. Congrats!'/>
+      <div className='row'>
+        <TodoList
+          todos={completedTodos}
+          title='Completed Todos'
+          message='Time to work. Try to complete some task.'
+        />
+        <TodoList
+          todos={pendingTodos}
+          title='Pending Todos'
+          message='You have completed all your goals. Congrats!'
+        />
+      </div>
     </div>
   );
 };

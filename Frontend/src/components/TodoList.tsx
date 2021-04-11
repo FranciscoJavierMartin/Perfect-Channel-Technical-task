@@ -41,7 +41,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, title, message }) => {
   }
 
   return (
-    <div>
+    <div className='col-lg-6'>
       <h2>{title}</h2>
       {isLoading ? (
         <h3>Loading...</h3>
