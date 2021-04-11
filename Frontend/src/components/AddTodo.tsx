@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { createTodo } from '../network/todos';
+import loadTodos from '../store/todoAction';
+import { useTodoContext } from '../store/TodoContext';
 
 interface AddTodoProps {
   forceRefresh: React.Dispatch<React.SetStateAction<boolean>>;
@@ -7,11 +9,12 @@ interface AddTodoProps {
 
 const AddTodo: React.FC<AddTodoProps> = ({ forceRefresh }) => {
   const [description, setDescription] = useState<string>('');
+  const { dispatch: todoDispatch } = useTodoContext();
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     createTodo(description).then(() => {
-      forceRefresh((prevState: boolean) => !prevState);
+      loadTodos(todoDispatch);
     });
   };
 

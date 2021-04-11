@@ -15,11 +15,11 @@ namespace PerfectChannel.WebApi.Controllers
   public class TaskController : ControllerBase
   {
 
-    private List<Todo> _todos;
+    private static List<Todo> _todos = new List<Todo>();
 
     public TaskController()
     {
-      _todos = new List<Todo>();
+      // _todos = new List<Todo>();
     }
 
     [HttpGet]
