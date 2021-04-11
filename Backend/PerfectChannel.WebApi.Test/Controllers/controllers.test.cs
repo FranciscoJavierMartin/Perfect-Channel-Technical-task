@@ -73,5 +73,31 @@ namespace PerfectChannel.WebApi.Test.Controllers
       Todo notUpdatedTodoFromCompleted = todosCompleted.FirstOrDefault(x => x.Id == notUpdatedTodo.Id); ;
       Assert.IsNull(notUpdatedTodoFromCompleted);
     }
+
+    [Test]
+    public async Task ToggleTodoFromCompletedToPending()
+    {
+      await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "Test" });
+      await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "Test 1" });
+
+      List<Todo> todos = (await _todoService.GetAllTodos()).Value;
+      Todo insertedTodo = todos[0];
+      Todo notUpdatedTodo = todos[1];
+
+      await _todoService.ToggleTodo(insertedTodo.Id);
+
+      ActionResult response = await _todoService.ToggleTodo(insertedTodo.Id);
+      List<Todo> todosPending = (await _todoService.GetFilteredTodos(false)).Value;
+      List<Todo> todosCompleted = (await _todoService.GetFilteredTodos(true)).Value;
+      Todo todoUpdated = todosPending.FirstOrDefault(x => x.Id == insertedTodo.Id);
+      Assert.IsInstanceOf<OkResult>(response);
+      Assert.IsEmpty(todosCompleted);
+      Assert.IsNotNull(todoUpdated);
+      Assert.AreEqual(todoUpdated.Description, "Test");
+      Assert.IsFalse(todoUpdated.IsCompleted);
+
+      Todo notUpdatedTodoFromPending = todosCompleted.FirstOrDefault(x => x.Id == notUpdatedTodo.Id); ;
+      Assert.IsNotNull(notUpdatedTodoFromPending);
+    }
   }
 }
