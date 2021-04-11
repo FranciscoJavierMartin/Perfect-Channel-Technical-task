@@ -6,7 +6,7 @@ const TodoContext = React.createContext<{
   state: TodoState;
   dispatch: DispatchTodo;
 }>({
-  state: { completedTodos: [], pendingTodos: [] },
+  state: { completedTodos: [], pendingTodos: [], isLoading: false, },
   dispatch: (action: TodoAction) => {},
 });
 
@@ -18,6 +18,7 @@ const TodoProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(todoReducer, {
     completedTodos: [],
     pendingTodos: [],
+    isLoading: false,
   });
 
   return (

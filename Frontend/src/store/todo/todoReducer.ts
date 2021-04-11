@@ -14,6 +14,18 @@ export default function todoReducer(
         completedTodos: action.payload.completedTodos,
       };
       break;
+    case TodoActionName.INIT_LOADING:
+      res = {
+        ...state,
+        isLoading: true,
+      };
+      break;
+    case TodoActionName.FINISH_LOADING:
+      res = {
+        ...state,
+        isLoading: false,
+      };
+      break;
     default:
       res = state;
   }
