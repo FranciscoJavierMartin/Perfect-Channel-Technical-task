@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { createTodo } from '../network/todos';
+import { useToastContext } from '../store/toast/ToastContext';
 import loadTodos from '../store/todo/todoAction';
 import { useTodoContext } from '../store/todo/TodoContext';
 
@@ -8,11 +9,14 @@ interface AddTodoProps {}
 const AddTodo: React.FC<AddTodoProps> = () => {
   const [description, setDescription] = useState<string>('');
   const { dispatch: todoDispatch } = useTodoContext();
+  const addToast = useToastContext();
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     createTodo(description).then(() => {
-      loadTodos(todoDispatch);
+      loadTodos(todoDispatch).then(() =>
+        addToast(`Your task "${description}" has been added successfuly`)
+      );
     });
   };
 
