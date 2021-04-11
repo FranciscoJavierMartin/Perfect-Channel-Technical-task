@@ -6,7 +6,9 @@ export interface Toast {
   isError: boolean;
 }
 
-const ToastContext = React.createContext((message: string, isError?: boolean) => {});
+const ToastContext = React.createContext(
+  (message: string, isError?: boolean) => {}
+);
 
 export function useToastContext() {
   return React.useContext(ToastContext);
@@ -43,7 +45,11 @@ const ToastProvider: React.FC = ({ children }) => {
       <div className='toasts-wrapper'>
         {toasts.map((toast: Toast) => (
           <div
-            className={['toast', toast.isError ? 'error' : ''].join(' ')}
+            className={[
+              'custom-toast',
+              'text-white',
+              toast.isError ? 'bg-danger' : 'bg-primary',
+            ].join(' ')}
             key={toast.id}
           >
             {toast.message}
