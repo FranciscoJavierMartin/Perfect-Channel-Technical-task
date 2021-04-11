@@ -1,7 +1,13 @@
 // Add your code here and rename the file accordingly.
 
+using System.Collections.Generic;
+using Backend.PerfectChannel.WebApi.Entities;
 using NUnit.Framework;
 using PerfectChannel.WebApi.Controllers;
+using Backend.PerfectChannel.WebApi.DTO;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace PerfectChannel.WebApi.Test.Controllers
 {
@@ -18,9 +24,10 @@ namespace PerfectChannel.WebApi.Test.Controllers
     }
 
     [Test]
-    public void ReturnFalse()
+    public async Task InitialContentIsEmpty()
     {
-      Assert.IsFalse(false);
+      List<Todo> todos = (await _todoService.GetAllTodos()).Value;
+      Assert.IsEmpty(todos);
     }
   }
 }
