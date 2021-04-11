@@ -12,7 +12,10 @@ interface TodoListProps {
 }
 
 const TodoList: React.FC<TodoListProps> = ({ todos, title, message }) => {
-  const { dispatch: todoDispatch } = useTodoContext();
+  const {
+    state: { isLoading },
+    dispatch: todoDispatch,
+  } = useTodoContext();
   const addToast = useToastContext();
 
   function toggleHandler(todo: Todo) {
@@ -40,7 +43,9 @@ const TodoList: React.FC<TodoListProps> = ({ todos, title, message }) => {
   return (
     <div>
       <h2>{title}</h2>
-      {todos.length === 0 ? (
+      {isLoading ? (
+        <h3>Loading...</h3>
+      ) : todos.length === 0 ? (
         <span>{message}</span>
       ) : (
         <ul>

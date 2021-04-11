@@ -18,7 +18,7 @@ export default async function loadTodos(dispatch: DispatchTodo) {
     console.log(error);
   } finally {
     dispatch({
-      type: TodoActionName.INIT_LOADING,
+      type: TodoActionName.FINISH_LOADING,
     });
   }
 }
