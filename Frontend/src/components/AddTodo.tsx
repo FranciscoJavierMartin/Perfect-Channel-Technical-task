@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { createTodo } from '../network/todos';
 
-const AddTodo: React.FC = () => {
+interface AddTodoProps {
+  forceRefresh: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const AddTodo: React.FC<AddTodoProps> = ({ forceRefresh }) => {
   const [description, setDescription] = useState<string>('');
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    createTodo(description);
+    createTodo(description).then(() => {
+      forceRefresh((prevState: boolean) => !prevState);
+    });
   };
 
   return (

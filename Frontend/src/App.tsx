@@ -21,7 +21,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <AddTodo />
+      <AddTodo forceRefresh={setForcedRefresh}/>
       <TodoList
         todos={completedTodos}
         title='Completed Todos'
