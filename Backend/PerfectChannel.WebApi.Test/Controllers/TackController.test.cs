@@ -1,5 +1,3 @@
-// Add your code here and rename the file accordingly.
-
 using System.Collections.Generic;
 using Backend.PerfectChannel.WebApi.Entities;
 using NUnit.Framework;
