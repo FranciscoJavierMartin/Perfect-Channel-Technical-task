@@ -15,24 +15,24 @@ namespace PerfectChannel.WebApi.Controllers
   public class TaskController : ControllerBase
   {
 
-    private static List<Todo> _todos;
+    private static List<Todo> _todos = new List<Todo>();
 
     public TaskController() { }
 
     [HttpGet]
-    public ActionResult<List<Todo>> GetAllTodos()
+    public async Task<ActionResult<List<Todo>>> GetAllTodos()
     {
       return _todos;
     }
 
     [HttpGet("filtered")]
-    public ActionResult<List<Todo>> GetFilteredTodos([FromQuery] bool isCompleted)
+    public async Task<ActionResult<List<Todo>>> GetFilteredTodos([FromQuery] bool isCompleted)
     {
       return _todos.FindAll(x => x.IsCompleted == isCompleted);
     }
 
     [HttpPost]
-    public ActionResult CreateNewTodo([FromBody] TodoAddDTO todoToAdd)
+    public async Task<ActionResult> CreateNewTodo([FromBody] TodoAddDTO todoToAdd)
     {
       _todos.Add(
         new Todo
@@ -46,7 +46,7 @@ namespace PerfectChannel.WebApi.Controllers
     }
 
     [HttpPatch("{id}")]
-    public ActionResult ToggleTodo(Guid id)
+    public async Task<ActionResult> ToggleTodo(Guid id)
     {
       ActionResult res;
       Todo todoToUpdate = _todos.FirstOrDefault(x => x.Id == id);
