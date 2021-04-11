@@ -142,5 +142,21 @@ namespace PerfectChannel.WebApi.Test.Controllers
       Assert.IsInstanceOf<OkResult>(response);
       Assert.AreEqual(response.Value.Count, 2);
     }
+
+    [Test]
+    public async Task GetAllPendingTodo()
+    {
+      await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "Test 1" });
+      await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "Test 2" });
+      await _todoService.CreateNewTodo(new TodoAddDTO() { Description = "Test 3" });
+
+      List<Todo> todos = (await _todoService.GetAllTodos()).Value;
+
+      await _todoService.ToggleTodo(todos[0].Id);
+
+      ActionResult<List<Todo>> response = await _todoService.GetFilteredTodos(false);
+      Assert.IsInstanceOf<OkResult>(response);
+      Assert.AreEqual(response.Value.Count, 2);
+    }
   }
 }
