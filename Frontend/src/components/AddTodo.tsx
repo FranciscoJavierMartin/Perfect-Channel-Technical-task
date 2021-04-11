@@ -32,7 +32,7 @@ const AddTodo: React.FC<AddTodoProps> = () => {
   };
 
   return (
-    <div className='row justify-content-between text-white mb-3'>
+    <div className='row justify-content-between text-white mb-3 ml-1 mr-1'>
       <form onSubmit={submitHandler} className='input-group'>
         <input
           type='text'
