@@ -17,16 +17,17 @@ const App: React.FC = () => {
 
   return (
     <div className='container'>
+      <h1 className='text-center'>The coolest TO-DO App</h1>
       <AddTodo />
       <div className='row'>
         <TodoList
           todos={completedTodos}
-          title='Completed Todos'
+          title='Completed TO-DO'
           message='Time to work. Try to complete some task.'
         />
         <TodoList
           todos={pendingTodos}
-          title='Pending Todos'
+          title='Pending TO-DO'
           message='You have completed all your goals. Congrats!'
         />
       </div>
