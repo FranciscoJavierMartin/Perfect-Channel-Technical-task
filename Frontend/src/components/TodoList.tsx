@@ -17,9 +17,23 @@ const TodoList: React.FC<TodoListProps> = ({ todos, title, message }) => {
 
   function toggleHandler(todo: Todo) {
     toggleTodo(todo.id)
-      .then(() => {loadTodos(todoDispatch))
       .then(() => {
-        addToast(``);
+        const message = todo.isCompleted
+          ? `You can start to work on "${todo.description}."`
+          : `You have complete "${todo.description}". Good job!`;
+        addToast(message);
+        loadTodos(todoDispatch).catch(() =>
+          addToast(
+            'Ups, something went wrong when load tasks. Please try again.',
+            true
+          )
+        );
+      })
+      .catch(() => {
+        const message = todo.isCompleted
+          ? `Ups, something went wrong when you completed your task. Please try again.`
+          : `Ups, something went wrong when you mark as "pending" your task. Please try again.`;
+        addToast(message, true);
       });
   }
 

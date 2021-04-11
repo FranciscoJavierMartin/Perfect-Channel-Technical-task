@@ -18,14 +18,14 @@ const AddTodo: React.FC<AddTodoProps> = () => {
         addToast(`Your task "${description}" has been added successfuly`);
         loadTodos(todoDispatch).catch(() =>
           addToast(
-            'Ups, something went wrong when load tasks. Try again.',
+            'Ups, something went wrong when load tasks. Please try again.',
             true
           )
         );
       })
       .catch(() =>
         addToast(
-          'Ups, something went wrong when your task was added. Try again.',
+          'Ups, something went wrong when your task was added. Please try again.',
           true
         )
       );
