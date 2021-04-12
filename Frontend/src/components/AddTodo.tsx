@@ -36,7 +36,7 @@ const AddTodo: React.FC<AddTodoProps> = () => {
 
   return (
     <div
-      className='row justify-content-between text-white mb-3 mx-1 my-4'
+      className='row justify-content-between text-white mx-1 my-4'
       data-test='add-todo'
     >
       <form onSubmit={submitHandler} className='input-group'>
@@ -47,9 +47,10 @@ const AddTodo: React.FC<AddTodoProps> = () => {
           required
           placeholder='What you want to achieve?'
           className='form-control'
+          data-test='add-todo-input'
         />
         <div className='input-group-append'>
-          <button className='btn btn-primary pl-4 pr-4' type='submit'>
+          <button className='btn btn-primary pl-4 pr-4' type='submit' data-test='add-todo-submit-button'>
             Add
           </button>
         </div>
