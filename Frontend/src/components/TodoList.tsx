@@ -5,7 +5,7 @@ import { useToastContext } from '../store/toast/ToastContext';
 import loadTodos from '../store/todo/todoAction';
 import { useTodoContext } from '../store/todo/TodoContext';
 
-interface TodoListProps {
+export interface TodoListProps {
   todos: Todo[];
   title: string;
   message: string;
@@ -50,10 +50,13 @@ const TodoList: React.FC<TodoListProps> = ({
 
   return (
     <div className='col-12' data-test={title}>
-      <h2 className='text-center'>{title}</h2>
+      <h2 className='text-center' data-test='title'>
+        {title}
+      </h2>
       {isLoading ? (
         <div className='d-flex justify-content-center'>
           <div
+            data-test='loading'
             className='spinner-border text-dark'
             role='status'
             style={{ width: '3rem', height: '3rem' }}
@@ -62,7 +65,10 @@ const TodoList: React.FC<TodoListProps> = ({
           </div>
         </div>
       ) : todos.length === 0 ? (
-        <div className='d-flex flex-column align-items-center'>
+        <div
+          className='d-flex flex-column align-items-center'
+          data-test='placeholder-empty-list'
+        >
           <div className='row'>
             <img
               src={`assets/images/${image}.png`}
@@ -74,7 +80,7 @@ const TodoList: React.FC<TodoListProps> = ({
         </div>
       ) : (
         <div className='checkboxes'>
-          <ul className='list-unstyled'>
+          <ul className='list-unstyled' data-test='todo-list'>
             {todos.map((todo) => (
               <li key={todo.id}>
                 <label htmlFor={todo.id}>
@@ -84,6 +90,7 @@ const TodoList: React.FC<TodoListProps> = ({
                     checked={todo.isCompleted}
                     onChange={() => toggleHandler(todo)}
                     className='mr-2'
+                    data-test={`checkbox-${todo.id}`}
                   />
                   <span
                     className={
@@ -91,6 +98,7 @@ const TodoList: React.FC<TodoListProps> = ({
                         ? 'font-weight-light font-italic text-line-through'
                         : ''
                     }
+                    data-test={`description-${todo.id}`}
                   >
                     {todo.description}
                   </span>
