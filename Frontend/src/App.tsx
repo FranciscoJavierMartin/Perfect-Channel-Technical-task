@@ -72,6 +72,7 @@ const App: React.FC = () => {
         <div className='btn-group btn-group-lg w-100'>
           {buttons.map((btn) => (
             <button
+              key={btn.index}
               className={[
                 'btn',
                 activeTabIndex === btn.index ? 'btn-primary' : 'btn-link',
