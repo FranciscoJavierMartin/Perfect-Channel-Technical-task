@@ -53,30 +53,34 @@ const App: React.FC = () => {
       );
   }
 
+  const buttons = [
+    {
+      index: 0,
+      title: 'Pending',
+    },
+    {
+      index: 1,
+      title: 'Completed',
+    },
+  ];
+
   return (
     <div className='container'>
       <h1 className='text-center'>The coolest TO-DO App</h1>
       <AddTodo />
       <div className='row'>
         <div className='btn-group btn-group-lg w-100'>
-          <button
-            className={[
-              'btn',
-              activeTabIndex === 0 ? 'btn-primary' : 'btn-link',
-            ].join(' ')}
-            onClick={() => setActiveTabIndex(0)}
-          >
-            Pending
-          </button>
-          <button
-            className={[
-              'btn',
-              activeTabIndex === 1 ? 'btn-primary' : 'btn-link',
-            ].join(' ')}
-            onClick={() => setActiveTabIndex(1)}
-          >
-            Completed
-          </button>
+          {buttons.map((btn) => (
+            <button
+              className={[
+                'btn',
+                activeTabIndex === btn.index ? 'btn-primary' : 'btn-link',
+              ].join(' ')}
+              onClick={() => setActiveTabIndex(btn.index)}
+            >
+              {btn.title}
+            </button>
+          ))}
         </div>
         {content}
       </div>
