@@ -66,10 +66,10 @@ const App: React.FC = () => {
 
   return (
     <div className='container'>
-      <h1 className='text-center'>The coolest TO-DO App</h1>
+      <h1 className='text-center my-5'>The coolest TO-DO App</h1>
       <AddTodo />
       <div className='row'>
-        <div className='btn-group btn-group-lg w-100'>
+        <div className='btn-group btn-group-lg w-100 mx-1 mb-3'>
           {buttons.map((btn) => (
             <button
               key={btn.index}
