@@ -65,7 +65,7 @@ const App: React.FC = () => {
   ];
 
   return (
-    <div className='container'>
+    <div className='container' data-test='component-app'>
       <h1 className='text-center my-5'>The coolest TO-DO App</h1>
       <AddTodo />
       <div className='row'>
@@ -75,7 +75,9 @@ const App: React.FC = () => {
               key={btn.index}
               className={[
                 'btn',
-                activeTabIndex === btn.index ? 'btn-primary' : 'btn-outline-primary',
+                activeTabIndex === btn.index
+                  ? 'btn-primary'
+                  : 'btn-outline-primary',
               ].join(' ')}
               onClick={() => setActiveTabIndex(btn.index)}
             >
