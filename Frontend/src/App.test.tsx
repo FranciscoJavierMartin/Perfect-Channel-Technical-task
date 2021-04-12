@@ -23,4 +23,9 @@ describe('Render components', () => {
     const component = findByTestAttrReactWrapper(wrapper, 'title-app');
     expect(component.length).toBe(1);
   });
+
+  it('render "Add TODO"', () => {
+    const component = findByTestAttrReactWrapper(wrapper, 'add-todo');
+    expect(component.length).toBe(1);
+  });
 });
