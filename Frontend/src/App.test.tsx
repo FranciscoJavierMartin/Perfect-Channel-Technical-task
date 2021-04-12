@@ -39,4 +39,13 @@ describe('Render components', () => {
     expect(component.length).toBe(1);
   });
 
+  it('render "Pending" TODOS', () => {
+    const component = findByTestAttrReactWrapper(wrapper, 'Pending TO-DO');
+    expect(component.length).toBe(1);
+  });
+
+  it('Not render "Completed" TODOS', () => {
+    const component = findByTestAttrReactWrapper(wrapper, 'Completed TO-DO');
+    expect(component.length).toBe(0);
+  });
 });
