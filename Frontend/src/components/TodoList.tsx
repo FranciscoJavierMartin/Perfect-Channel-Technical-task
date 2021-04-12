@@ -50,7 +50,7 @@ const TodoList: React.FC<TodoListProps> = ({
 
   return (
     <div className='col-12'>
-      <h2>{title}</h2>
+      <h2 className='text-center'>{title}</h2>
       {isLoading ? (
         <div className='d-flex justify-content-center'>
           <div
@@ -62,12 +62,14 @@ const TodoList: React.FC<TodoListProps> = ({
           </div>
         </div>
       ) : todos.length === 0 ? (
-        <div>
-          <img
-            src={`assets/images/${image}.png`}
-            alt={imageAlt}
-            className='rounded img-fluid mb-2'
-          />
+        <div className='d-flex flex-column align-items-center'>
+          <div className='row'>
+            <img
+              src={`assets/images/${image}.png`}
+              alt={imageAlt}
+              className='rounded img-fluid mb-2 col-sm-6 offset-sm-3'
+            />
+          </div>
           <span>{message}</span>
         </div>
       ) : (
