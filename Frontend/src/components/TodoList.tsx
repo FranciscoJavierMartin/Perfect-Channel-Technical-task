@@ -49,7 +49,7 @@ const TodoList: React.FC<TodoListProps> = ({
   }
 
   return (
-    <div className='col-md-6 col-12'>
+    <div className='col-12'>
       <h2>{title}</h2>
       {isLoading ? (
         <div className='d-flex justify-content-center'>

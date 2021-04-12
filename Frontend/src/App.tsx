@@ -19,7 +19,7 @@ const App: React.FC = () => {
     <div className='container'>
       <h1 className='text-center'>The coolest TO-DO App</h1>
       <AddTodo />
-      <div className='row'>
+      <div className='row'>  
         <TodoList
           todos={pendingTodos}
           title='Pending TO-DO'
