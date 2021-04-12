@@ -75,7 +75,7 @@ const App: React.FC = () => {
               key={btn.index}
               className={[
                 'btn',
-                activeTabIndex === btn.index ? 'btn-primary' : 'btn-link',
+                activeTabIndex === btn.index ? 'btn-primary' : 'btn-outline-primary',
               ].join(' ')}
               onClick={() => setActiveTabIndex(btn.index)}
             >
