@@ -66,7 +66,9 @@ const App: React.FC = () => {
 
   return (
     <div className='container' data-test='component-app'>
-      <h1 className='text-center my-5'>The coolest TO-DO App</h1>
+      <h1 className='text-center my-5' data-test='title-app'>
+        The coolest TO-DO App
+      </h1>
       <AddTodo />
       <div className='row'>
         <div className='btn-group btn-group-lg w-100 mx-1 mb-3'>

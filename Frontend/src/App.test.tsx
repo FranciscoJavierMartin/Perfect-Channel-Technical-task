@@ -7,8 +7,20 @@ const setup = (): ReactWrapper => {
   return mount(<App />);
 };
 
-it('renders without crashing', () => {
-  const wrapper = setup();
-  const component = findByTestAttrReactWrapper(wrapper, 'component-app');
-  expect(component.length).toBe(1);
+describe('Render components', () => {
+  let wrapper: ReactWrapper;
+
+  beforeEach(() => {
+    wrapper = setup();
+  });
+
+  it('renders without crashing', () => {
+    const component = findByTestAttrReactWrapper(wrapper, 'component-app');
+    expect(component.length).toBe(1);
+  });
+
+  it('render title', () => {
+    const component = findByTestAttrReactWrapper(wrapper, 'title-app');
+    expect(component.length).toBe(1);
+  });
 });
