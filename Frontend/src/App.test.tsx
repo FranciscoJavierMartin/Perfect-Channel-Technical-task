@@ -53,18 +53,30 @@ describe('Render components', () => {
 it('Change TODO list when click the button', () => {
   const wrapper: ReactWrapper = setup();
 
-  const componentPendingTODO = findByTestAttrReactWrapper(wrapper, 'Pending TO-DO');
+  const componentPendingTODO = findByTestAttrReactWrapper(
+    wrapper,
+    'Pending TO-DO'
+  );
   expect(componentPendingTODO.length).toBe(1);
 
-  const componentCompletedTODO = findByTestAttrReactWrapper(wrapper, 'Completed TO-DO');
+  const componentCompletedTODO = findByTestAttrReactWrapper(
+    wrapper,
+    'Completed TO-DO'
+  );
   expect(componentCompletedTODO.length).toBe(0);
 
   const completedButton = findByTestAttrReactWrapper(wrapper, 'Completed');
   completedButton.simulate('click');
 
-  const componentPendingTODOAfter = findByTestAttrReactWrapper(wrapper, 'Pending TO-DO');
+  const componentPendingTODOAfter = findByTestAttrReactWrapper(
+    wrapper,
+    'Pending TO-DO'
+  );
   expect(componentPendingTODOAfter.length).toBe(0);
 
-  const componentCompletedTODOAfter = findByTestAttrReactWrapper(wrapper, 'Completed TO-DO');
+  const componentCompletedTODOAfter = findByTestAttrReactWrapper(
+    wrapper,
+    'Completed TO-DO'
+  );
   expect(componentCompletedTODOAfter.length).toBe(1);
-})
+});
