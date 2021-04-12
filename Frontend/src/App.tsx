@@ -82,6 +82,7 @@ const App: React.FC = () => {
                   : 'btn-outline-primary',
               ].join(' ')}
               onClick={() => setActiveTabIndex(btn.index)}
+              data-test={btn.title}
             >
               {btn.title}
             </button>

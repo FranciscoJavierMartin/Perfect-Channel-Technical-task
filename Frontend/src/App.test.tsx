@@ -28,4 +28,15 @@ describe('Render components', () => {
     const component = findByTestAttrReactWrapper(wrapper, 'add-todo');
     expect(component.length).toBe(1);
   });
+
+  it('render "Pending" button', () => {
+    const component = findByTestAttrReactWrapper(wrapper, 'Pending');
+    expect(component.length).toBe(1);
+  });
+
+  it('render "Completed" button', () => {
+    const component = findByTestAttrReactWrapper(wrapper, 'Completed');
+    expect(component.length).toBe(1);
+  });
+
 });
